@@ -8,6 +8,10 @@ button_font = ("Agency FB",
                18,
                "bold")
 
+lower_basic_font = ("Agency FB",
+                    18,
+                    "bold")
+
 # basic colors:
 main_f_color = "#ECECEC"
 button_fc = "#474787"
