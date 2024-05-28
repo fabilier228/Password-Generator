@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import tkinter as tk
-
-=======
 import json
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -10,17 +6,10 @@ import random
 
 
 # Creating the structure of an App
->>>>>>> 15af7b264ff1471b0b200bf737f7281c1561dbeb
 class PassGen(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-
-<<<<<<< HEAD
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.mainloop()
-=======
         # Creating a container to hold all the pages
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
@@ -215,4 +204,3 @@ class SearchPage(tk.Frame):
 if __name__ == "__main__":
     app = PassGen()
     app.mainloop()
->>>>>>> 15af7b264ff1471b0b200bf737f7281c1561dbeb
