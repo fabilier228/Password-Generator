@@ -116,10 +116,11 @@ class GenPage(tk.Frame):
                 with open("../data/data.json", 'r') as file:
                     data = json.load(file)
 
-                data.append(password)
+                if password not in data:
+                    data.append(password)
+                    createEntryWithPass(password)
                 with open("../data/data.json", "w") as dane:
                     json.dump(data, dane)
-                createEntryWithPass(password)
             except ValueError:
                 errorpage = tk.Tk()
                 errorpage.geometry("300x100")
@@ -169,7 +170,7 @@ class GenPage(tk.Frame):
                                 fg=custom.button_fc,
                                 bg=custom.button_bgc,
                                 width=20)
-        # packing and placing the elements
+        # packing and placing the elements on GenPage
 
         title_label.pack(side="top", fill="x", pady=10)
 
@@ -190,15 +191,94 @@ class GenPage(tk.Frame):
 class SearchPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, bg=custom.main_bg_color)
         self.controller = controller
-        label = tk.Label(self, text="This is page 1")
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+
+        # functions
+        def createTitle(sentence, x, y):
+            label = tk.Label(self,
+                                   text=sentence,
+                                   font=custom.lower_basic_font,
+                                   bg=custom.main_bg_color,
+                                   fg=custom.main_f_color,
+                                    height=300)
+
+            label.pack()
+            label.place(x=x, y=y)
+
+        def findCode():
+            code = code_entry.get().upper()
+            with open("../data/data.json", 'r') as file:
+                data = json.load(file)
+
+            if code not in data:
+                createTitle("THERE IS NO SUCH CODE", x=180, y=170)
+            else:
+                createTitle("DO YOU WANT TO DELETE IT?", x=180, y=170)
+
+                no_button = tk.Button(self, text="NO",
+                                command=lambda: controller.show_frame("MainPage"),
+                                font=custom.button_font_small,
+                                fg=custom.button_fc,
+                                bg=custom.button_bgc,
+                                width=20)
+                yes_button = tk.Button(self, text="YES",
+                                command=lambda: controller.show_frame("MainPage"),
+                                font=custom.button_font_small,
+                                fg=custom.button_fc,
+                                bg=custom.button_bgc,
+                                width=20)
+
+                yes_button.pack()
+                yes_button.place(x=180, y=210)
+
+                no_button.pack()
+                no_button.place(x=295, y=210)
 
 
+        # structure of the SearchPage
+
+        title_label = tk.Label(self,
+                               text="FIND CODE",
+                               font=custom.main_font,
+                               bg=custom.main_bg_color,
+                               fg=custom.main_f_color)
+
+        code_entry = tk.Entry(self,
+                                font=custom.main_bg_color,
+                                fg=custom.main_bg_color,
+                                bg=custom.button_bgc,
+                                width=40,
+                                borderwidth=3
+                                )
+
+
+        search_button = tk.Button(self, text="SEARCH",
+                                command=findCode,
+                                font=custom.button_font_small,
+                                fg=custom.button_fc,
+                                bg=custom.button_bgc,
+                                width=20)
+
+
+        back_button = tk.Button(self, text="BACK",
+                                command=lambda: controller.show_frame("MainPage"),
+                                font=custom.button_font,
+                                fg=custom.button_fc,
+                                bg=custom.button_bgc,
+                                width=10)
+
+        # packing and placing the elements on a SearchPage
+
+        title_label.pack(side="top", fill="x", pady=10)
+
+        code_entry.pack()
+        code_entry.place(x=80, y=140)
+
+        search_button.pack()
+        search_button.place(x=455, y=141)
+
+        back_button.pack(side="bottom", pady=10)
 
 
 if __name__ == "__main__":

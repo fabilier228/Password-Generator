@@ -8,6 +8,10 @@ button_font = ("Agency FB",
                18,
                "bold")
 
+button_font_small = ("Agency FB",
+               9,
+               "bold")
+
 lower_basic_font = ("Agency FB",
                     18,
                     "bold")
