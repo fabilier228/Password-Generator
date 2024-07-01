@@ -201,10 +201,37 @@ class SearchPage(tk.Frame):
                                    font=custom.lower_basic_font,
                                    bg=custom.main_bg_color,
                                    fg=custom.main_f_color,
-                                    height=300)
+                                    width=30)
 
             label.pack()
             label.place(x=x, y=y)
+
+        def noButton():
+            code_entry.delete(0, "end")
+
+            blankSpace()
+
+        def yesButton():
+            code = code_entry.get().upper()
+            with open("../data/data.json", 'r') as file:
+                data = json.load(file)
+
+            data.remove(code)
+
+            with open("../data/data.json", 'w') as currentWrite:
+                json.dump(data, currentWrite)
+
+            noButton()
+        def blankSpace():
+            blank_space = tk.Label(self,
+                                   font=custom.lower_basic_font,
+                                   bg=custom.main_bg_color,
+                                   fg=custom.main_f_color,
+                                   width=30,
+                                   height=5)
+
+            blank_space.pack()
+            blank_space.place(x=140, y=170)
 
         def findCode():
             code = code_entry.get().upper()
@@ -212,18 +239,24 @@ class SearchPage(tk.Frame):
                 data = json.load(file)
 
             if code not in data:
-                createTitle("THERE IS NO SUCH CODE", x=180, y=170)
+
+                blankSpace()
+
+                createTitle("THERE IS NO SUCH CODE", x=160, y=170)
             else:
-                createTitle("DO YOU WANT TO DELETE IT?", x=180, y=170)
+
+                blankSpace()
+
+                createTitle("DO YOU WANT TO DELETE IT?", x=160, y=170)
 
                 no_button = tk.Button(self, text="NO",
-                                command=lambda: controller.show_frame("MainPage"),
+                                command=noButton,
                                 font=custom.button_font_small,
                                 fg=custom.button_fc,
                                 bg=custom.button_bgc,
                                 width=20)
                 yes_button = tk.Button(self, text="YES",
-                                command=lambda: controller.show_frame("MainPage"),
+                                command=yesButton,
                                 font=custom.button_font_small,
                                 fg=custom.button_fc,
                                 bg=custom.button_bgc,
