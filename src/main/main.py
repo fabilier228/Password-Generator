@@ -121,6 +121,8 @@ class GenPage(tk.Frame):
                     createEntryWithPass(password)
                 with open("../data/data.json", "w") as dane:
                     json.dump(data, dane)
+
+            # This creates an error window in case of wrong value (not integer)
             except ValueError:
                 errorpage = tk.Tk()
                 errorpage.geometry("300x100")
