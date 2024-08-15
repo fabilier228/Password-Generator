@@ -52,21 +52,21 @@ class MainPage(tk.Frame):
                               fg=custom.main_f_color)
 
         start_button = tk.Button(self,
-                                  text="START",
-                                  command=lambda: controller.show_frame("GenPage"),
-                                  font=custom.button_font,
-                                  fg=custom.button_fc,
-                                  bg=custom.button_bgc,
-                                  width=20)
-
-        #sp stands for searchpage
-        sp_button = tk.Button(self,
-                                 text="FIND CODE",
-                                 command=lambda: controller.show_frame("SearchPage"),
+                                 text="START",
+                                 command=lambda: controller.show_frame("GenPage"),
                                  font=custom.button_font,
                                  fg=custom.button_fc,
                                  bg=custom.button_bgc,
                                  width=20)
+
+        # sp stands for searchpage
+        sp_button = tk.Button(self,
+                              text="FIND CODE",
+                              command=lambda: controller.show_frame("SearchPage"),
+                              font=custom.button_font,
+                              fg=custom.button_fc,
+                              bg=custom.button_bgc,
+                              width=20)
 
         # packing and placing elements
 
@@ -80,8 +80,7 @@ class GenPage(tk.Frame):
         tk.Frame.__init__(self, parent, bg=custom.main_bg_color)
         self.controller = controller
 
-
-        #function createEntryWithPass() creates an entry with generated password in it
+        # function createEntryWithPass() creates an entry with generated password in it
         def createEntryWithPass(password):
             entry_text = tk.StringVar()
             entry_text.set(password)
@@ -96,7 +95,6 @@ class GenPage(tk.Frame):
                              )
             entry.pack(pady=20)
             entry.place(x=206, y=180)
-
 
         # getValue() takes from the entry a value, then if it is an integer
         # creates a password of that length
@@ -135,14 +133,13 @@ class GenPage(tk.Frame):
                 lbl.pack()
                 errorpage.mainloop()
 
-
         # structure of the GenPage
 
         title_label = tk.Label(self,
-                         text="GENERATOR",
-                         font=custom.main_font,
-                         bg=custom.main_bg_color,
-                         fg=custom.main_f_color)
+                               text="GENERATOR",
+                               font=custom.main_font,
+                               bg=custom.main_bg_color,
+                               fg=custom.main_f_color)
 
         description_label = tk.Label(self,
                                      text="Define the length",
@@ -152,11 +149,11 @@ class GenPage(tk.Frame):
                                      )
 
         back_button = tk.Button(self, text="BACK",
-                           command=lambda: controller.show_frame("MainPage"),
-                           font=custom.button_font,
-                           fg=custom.button_fc,
-                           bg=custom.button_bgc,
-                           width=20)
+                                command=lambda: controller.show_frame("MainPage"),
+                                font=custom.button_font,
+                                fg=custom.button_fc,
+                                bg=custom.button_bgc,
+                                width=20)
 
         entry_length = tk.Entry(self,
                                 font=custom.main_bg_color,
@@ -167,11 +164,11 @@ class GenPage(tk.Frame):
                                 )
 
         generate_button = tk.Button(self, text="GENERATE",
-                                command= getValue,
-                                font=custom.button_font,
-                                fg=custom.button_fc,
-                                bg=custom.button_bgc,
-                                width=20)
+                                    command=getValue,
+                                    font=custom.button_font,
+                                    fg=custom.button_fc,
+                                    bg=custom.button_bgc,
+                                    width=20)
         # packing and placing the elements on GenPage
 
         title_label.pack(side="top", fill="x", pady=10)
@@ -182,12 +179,10 @@ class GenPage(tk.Frame):
         back_button.pack(side="bottom", pady=10)
 
         entry_length.pack()
-        entry_length.place(x=206,y=140)
+        entry_length.place(x=206, y=140)
 
         generate_button.pack()
         generate_button.place(x=206, y=230)
-
-
 
 
 class SearchPage(tk.Frame):
@@ -199,11 +194,11 @@ class SearchPage(tk.Frame):
         # functions
         def createTitle(sentence, x, y):
             label = tk.Label(self,
-                                   text=sentence,
-                                   font=custom.lower_basic_font,
-                                   bg=custom.main_bg_color,
-                                   fg=custom.main_f_color,
-                                    width=30)
+                             text=sentence,
+                             font=custom.lower_basic_font,
+                             bg=custom.main_bg_color,
+                             fg=custom.main_f_color,
+                             width=30)
 
             label.pack()
             label.place(x=x, y=y)
@@ -224,6 +219,7 @@ class SearchPage(tk.Frame):
                 json.dump(data, currentWrite)
 
             noButton()
+
         def blankSpace():
             blank_space = tk.Label(self,
                                    font=custom.lower_basic_font,
@@ -252,24 +248,23 @@ class SearchPage(tk.Frame):
                 createTitle("DO YOU WANT TO DELETE IT?", x=160, y=170)
 
                 no_button = tk.Button(self, text="NO",
-                                command=noButton,
-                                font=custom.button_font_small,
-                                fg=custom.button_fc,
-                                bg=custom.button_bgc,
-                                width=20)
+                                      command=noButton,
+                                      font=custom.button_font_small,
+                                      fg=custom.button_fc,
+                                      bg=custom.button_bgc,
+                                      width=20)
                 yes_button = tk.Button(self, text="YES",
-                                command=yesButton,
-                                font=custom.button_font_small,
-                                fg=custom.button_fc,
-                                bg=custom.button_bgc,
-                                width=20)
+                                       command=yesButton,
+                                       font=custom.button_font_small,
+                                       fg=custom.button_fc,
+                                       bg=custom.button_bgc,
+                                       width=20)
 
                 yes_button.pack()
                 yes_button.place(x=180, y=210)
 
                 no_button.pack()
                 no_button.place(x=295, y=210)
-
 
         # structure of the SearchPage
 
@@ -280,21 +275,19 @@ class SearchPage(tk.Frame):
                                fg=custom.main_f_color)
 
         code_entry = tk.Entry(self,
-                                font=custom.main_bg_color,
-                                fg=custom.main_bg_color,
-                                bg=custom.button_bgc,
-                                width=40,
-                                borderwidth=3
-                                )
-
+                              font=custom.main_bg_color,
+                              fg=custom.main_bg_color,
+                              bg=custom.button_bgc,
+                              width=40,
+                              borderwidth=3
+                              )
 
         search_button = tk.Button(self, text="SEARCH",
-                                command=findCode,
-                                font=custom.button_font_small,
-                                fg=custom.button_fc,
-                                bg=custom.button_bgc,
-                                width=20)
-
+                                  command=findCode,
+                                  font=custom.button_font_small,
+                                  fg=custom.button_fc,
+                                  bg=custom.button_bgc,
+                                  width=20)
 
         back_button = tk.Button(self, text="BACK",
                                 command=lambda: controller.show_frame("MainPage"),
